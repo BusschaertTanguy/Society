@@ -8,7 +8,7 @@ This repository will be used as the parent of all sub repositories as we work in
 
 ## The Universe service
 
-By self sufficient, I mean that there is no user interaction needed for the society to grow, this is handled by the Universe service. Every N seconds ( N being defined in the configuration, based on the environement we are in. For the DEV environment I use a shorter N for testing purposes. ) the Universe "Ticks". A "Tick" is the equivalent for 1 day passing. So for example if N is 60 seconds, every 60 seconds a day passes in our Universe. Our Universe service then publishes a message and all interested parties can listen and act on it.
+By self sufficient, I mean that there is no user interaction needed for the society to grow, this is handled by the Universe service. Every N seconds ( N being defined in the configuration, based on the environement we are in. For the DEV environment I use a shorter N for testing purposes. ) the Universe "Ticks". A "Tick" is the equivalent for 1 day passing. So for example if N is 60 seconds, every 60 seconds a day passes in our Universe. The Universe service then publishes a message and all interested parties can listen and act on it.
 
 The Universe service can be found [here](https://github.com/BusschaertTanguy/Society.Service.Universe)
 
