@@ -23,3 +23,9 @@ The Citizen service can be found [here](https://github.com/BusschaertTanguy/Soci
 The services are hidden behind an API gateway for the consumer. Only the gateway has direct access to the services.
 
 The gateway can be found [here](https://github.com/BusschaertTanguy/Society.ApiGateway)
+
+## Web Application
+
+Finally, A web application is exposed to interact with the services.
+
+The angular application can be found [here](https://github.com/BusschaertTanguy/Society-Client.Angular)
