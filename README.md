@@ -28,4 +28,4 @@ The gateway can be found [here](https://github.com/BusschaertTanguy/Society.ApiG
 
 Finally, A web application is exposed to interact with the services.
 
-The angular application can be found [here](https://github.com/BusschaertTanguy/Society-Client.Angular)
+The angular application can be found [here](https://github.com/BusschaertTanguy/Society.Client.Angular)
