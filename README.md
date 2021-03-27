@@ -17,3 +17,9 @@ The Universe service can be found [here](https://github.com/BusschaertTanguy/Soc
 The Citizen service will be the services handling the Citizens of our Society. This can be seen as a register of all the people that are / were present in our Society, with basic information around that person ( their name, age, gender, ... ).
 
 The Citizen service can be found [here](https://github.com/BusschaertTanguy/Society.Service.Citizen)
+
+## API Gateway
+
+The services are hidden behind an API gateway for the consumer. Only the gateway has direct access to the services.
+
+The gateway can be found [here](https://github.com/BusschaertTanguy/Society.ApiGateway)
