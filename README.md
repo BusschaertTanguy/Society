@@ -24,6 +24,10 @@ The services are hidden behind an API gateway for the consumer. Only the gateway
 
 The gateway can be found [here](https://github.com/BusschaertTanguy/Society.ApiGateway)
 
+## Service Discovery & Registry
+
+I use Consul as service registry. All the services implement a hosted service that registers / deregisters themselves, and the API GW uses the provider to get the location of the service
+
 ## Web Application
 
 Finally, A web application is exposed to interact with the services.
