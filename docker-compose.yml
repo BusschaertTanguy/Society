@@ -39,7 +39,6 @@ services:
       - Consul__Host=universe-service
       - Consul__Port=80
       - Consul__Name=universe-service
-      - society-message-queue
     
   consul:
     ports:
