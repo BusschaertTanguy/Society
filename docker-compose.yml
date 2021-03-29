@@ -22,10 +22,10 @@ services:
       - MassTransit__Username=guest
       - MassTransit__Password=guest
       - MassTransit__Host=society-message-queue
-      - QueueEndpoints__Universe=citizen-universe-dev
-      - QueueEndpoints__Citizen=citizen-dev
-    depends_on:
-      - society-message-queue
+      - Consul__Discovery=http://consul:8500
+      - Consul__Host=citizen-service
+      - Consul__Port=80
+      - Consul__Name=citizen-service
       
   universe-service:
     image: society-service-universe
@@ -34,8 +34,16 @@ services:
       - MassTransit__Username=guest
       - MassTransit__Password=guest
       - MassTransit__Host=society-message-queue
-      - QueueEndpoints__Universe=universe-dev
-      - QueueEndpoints__Citizen=universe-citizen-dev
       - TickLength=10
-    depends_on:
+      - Consul__Discovery=http://consul:8500
+      - Consul__Host=universe-service
+      - Consul__Port=80
+      - Consul__Name=universe-service
       - society-message-queue
+    
+  consul:
+    ports:
+      - "5800:5800"
+      - "8600:8600/udp"
+    image: consul:latest
+    command: "agent -server -bootstrap -ui -client=0.0.0.0"
