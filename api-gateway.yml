@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: society-api-gateway-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: society-api-gateway-deployment
+  template:
+    metadata:
+      labels:
+        app: society-api-gateway-deployment
+    spec:
+      containers:
+      - name: society-api-gateway-deployment
+        image: tbusschaert/society-api-gateway:latest
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: society-api-gateway-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: society-api-gateway-deployment
+  ports:
+  - name: http
+    port: 5000
+    targetPort: 80
