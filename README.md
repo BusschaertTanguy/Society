@@ -6,6 +6,18 @@ The context of the project is very broad: Reflect how a society works trough mic
 
 This repository will be used as the parent of all sub repositories as we work in a multi repository fashion for all the pieces of the PoC.
 
+## Web Client
+
+The web client we use for this application is made in angular, and can be found [here](https://github.com/BusschaertTanguy/Society.Client.Angular)
+
+## Service Discovery
+
+The stack is deployed on kubernetes, so service discovery is purely handled by kubernetes. The API gateway communicates with kubernetes services, which sit in front of deployment pods. 1 Microservice thus have 1 service, 1 deployment with N replicas per deployment.
+
+## API Gateway
+
+I use [Ocelot](https://ocelot.readthedocs.io/en/latest/index.html) as an API gateway, it simply takes upstream calls and forwards them to the right downstream service.
+
 ## The Universe service
 
 By self sufficient, I mean that there is no user interaction needed for the society to grow, this is handled by the Universe service. Every N seconds ( N being defined in the configuration, based on the environement we are in. For the DEV environment I use a shorter N for testing purposes. ) the Universe "Ticks". A "Tick" is the equivalent for 1 day passing. So for example if N is 60 seconds, every 60 seconds a day passes in our Universe. The Universe service then publishes a message and all interested parties can listen and act on it.
@@ -18,18 +30,39 @@ The Citizen service will be the services handling the Citizens of our Society. T
 
 The Citizen service can be found [here](https://github.com/BusschaertTanguy/Society.Service.Citizen)
 
-## API Gateway
+## Running the stack on a local environment
+### Prerequisites
 
-The services are hidden behind an API gateway for the consumer. Only the gateway has direct access to the services.
+Kubernetes purely hosts the microservices and the gateway, everything storage or queue related is on the host. So for this to work, you have to have:
 
-The gateway can be found [here](https://github.com/BusschaertTanguy/Society.ApiGateway)
+- MS SQL
+- RabbitMQ
+- Docker
+- Minikube
 
-## Service Discovery & Registry
+installed on your host machine.
 
-I use Consul as service registry. All the services implement a hosted service that registers / deregisters themselves, and the API GW uses the provider to get the location of the service
+For configuration, you only have to change the environment variables in the YAML file of the microservices, the following has to be changed:
 
-## Web Application
+- MS SQL Host address and user credentials
+- RabbitMQ Host address and user credentials
 
-Finally, A web application is exposed to interact with the services.
+Everything else should be good.
 
-The angular application can be found [here](https://github.com/BusschaertTanguy/Society.Client.Angular)
+### Starting the stack
+
+When your MS SQL instance, RabbitMQ instance and minikube are running, the first thing you have to do is open a minikube tunnel so that your host machine can access the api gateway, open a separate terminal and run
+
+```
+minikube tunnel
+```
+
+Then, u can start the kubernetes services and deployment pods by running:
+
+```
+kubectl create -f ./
+```
+
+In the root of this repository. This should all the services and deployment pods.
+
+For now, you can just start the frontend trough your IDE, the endpoint is already configured to point to the gateway.
