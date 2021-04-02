@@ -45,6 +45,7 @@ Kubernetes purely hosts the microservices and the gateway, everything storage or
 - MS SQL
 - RabbitMQ
 - Docker
+- Kubectl
 - Minikube
 
 installed on your host machine.
